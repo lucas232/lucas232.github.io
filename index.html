@@ -14,17 +14,16 @@ var minTime;
 
 function setup() {
   createCanvas(600, 600);
-  minute1 = createInput();
   solve1 = createInput();
-  minute2 = createInput();
   solve2 = createInput();
-  minute3 = createInput();
   solve3 = createInput();
-  minute4 = createInput();
   solve4 = createInput();
   solve5 = createInput();
+  minute1 = createInput();
+  minute2 = createInput();
+  minute3 = createInput();
+  minute4 = createInput();
   minute5 = createInput();
-  
   button = createButton('submit');
   solve1.position(300, 100);
   solve2.position(300, 200);
@@ -41,6 +40,12 @@ function setup() {
 }
 
 function draw() {
+  textSize(20);
+  text("Seconds", 350,80);
+  textSize(12);
+  text("(Use \".\" for milliseconds)", 320,90);
+  textSize(20);
+  text("Minutes", 150,80);
 }
 
 function parseMinutes(minutes)
@@ -70,11 +75,11 @@ function calculate(){
   var result = c / 3;
   var minutes = floor(result / 60);
   var seconds = floor(result - 60 * minutes);
-  var centiseconds = round((result - 60 * minutes - seconds) * 1000);
+  var centiseconds = round(floor((result - 60 * minutes - seconds) * 1000));
   background(255);
   textSize(32);
   fill(0);
-  text(floor(minutes) + ":" +floor(seconds) + ","+floor(centiseconds), 250, 50);
+  text("Average: " + floor(minutes) + ":" +floor(seconds) + ","+floor(centiseconds), 200, 30);
   console.log("MaxTime : " + maxTime + " MinTime : " + minTime + " a : " + a + " b : "+ b + " c : " +c + " Result : " + result);
   
 }
