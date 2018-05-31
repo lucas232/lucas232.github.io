@@ -2,7 +2,82 @@
 <body>
 </body>
 <head>
-<h1>Test.</h1></br>
-<h2>Test.</h2>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"></script>
+<script>
+  var solve1;
+var solve2;
+var solve3;
+var solve4;
+var solve5;
+var maxTime;
+var minTime;
+
+function setup() {
+  createCanvas(600, 600);
+  minute1 = createInput();
+  solve1 = createInput();
+  minute2 = createInput();
+  solve2 = createInput();
+  minute3 = createInput();
+  solve3 = createInput();
+  minute4 = createInput();
+  solve4 = createInput();
+  solve5 = createInput();
+  minute5 = createInput();
+  
+  button = createButton('submit');
+  solve1.position(300, 100);
+  solve2.position(300, 200);
+  solve3.position(300, 300);
+  solve4.position(300, 400);
+  solve5.position(300, 500); 
+  minute1.position(100, 100);
+  minute2.position(100, 200);
+  minute3.position(100, 300);
+  minute4.position(100, 400);
+  minute5.position(100, 500);
+  button.position(250, 550)
+  button.mousePressed(calculate);
+}
+
+function draw() {
+}
+
+function parseMinutes(minutes)
+{
+  if (minutes == "") return 0;
+  return parseInt(minutes);
+}
+
+function calculate(){
+  var solves = [];
+  var minutes = [];
+  
+  solves.push(parseMinutes(minute1.value()) * 60 + parseFloat(solve1.value()));
+  solves.push(parseMinutes(minute2.value()) * 60 + parseFloat(solve2.value()));
+  solves.push(parseMinutes(minute3.value()) * 60 + parseFloat(solve3.value()));
+  solves.push(parseMinutes(minute4.value()) * 60 + parseFloat(solve4.value()));
+  solves.push(parseMinutes(minute5.value()) * 60 + parseFloat(solve5.value()));
+  
+
+  
+  
+  maxTime = max(solves);
+  minTime = min(solves);
+  var a = solves[0]+ solves[1]  + solves[2] +  solves[3] +  solves[4];
+  var b = a - maxTime;
+  var c = b - minTime;
+  var result = c / 3;
+  var minutes = floor(result / 60);
+  var seconds = floor(result - 60 * minutes);
+  var centiseconds = round((result - 60 * minutes - seconds) * 1000);
+  background(255);
+  textSize(32);
+  fill(0);
+  text(floor(minutes) + ":" +floor(seconds) + ","+floor(centiseconds), 250, 50);
+  console.log("MaxTime : " + maxTime + " MinTime : " + minTime + " a : " + a + " b : "+ b + " c : " +c + " Result : " + result);
+  
+}
+  </script>
 </head>
 </html>
